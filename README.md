@@ -1,4 +1,5 @@
 # NaturalLanguage
+교재 : git clone https://github.com/NLP-kr/tensorflow-ml-nlp-tf2.git
 
 ## 1. 모델구축
 
