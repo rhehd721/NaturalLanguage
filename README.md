@@ -121,3 +121,20 @@ class MyModel(tf.keras.Model):
 ```
 
 ## 2. 모델 학습
+Tensor Flow 2.0 공식 가이드에서 권장하는 모델학습
+
+- 1. 케라스 모델의 내장 API를 활용한 방법(ex. model.fit(), model.evaluate(), model.predict())
+- 2. 학습, 검증, 예측 등 모든 과정을 GradientTape 객체를 활용해 직접 구현하는 방법
+
+## 내장 API 활용 (36p)
+- 학습과정 정의
+    - 손실함수(loss function), 옵티마이저(optimizer), 지표(metric)
+```python
+model.complie(optimizer = tf.keras.optimizer.Adam(),
+            loss = tf.keras.losses.CategoricalCrossentropy(),
+            metrics = [tf.keras.metrics.Accuracy()])
+```
+- 정의된 모델 객체를 대상으로 학습, 푱가, 예측 메서드 호출
+```python
+model.fit(x_train, y_train, betch_size = 64, epochs = 3)
+```
