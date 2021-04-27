@@ -115,6 +115,7 @@ max_pool = tf.keras.layers.MaxPool1D( ... )(input)
 ## Sequential API (tf.keras.Sequential)
 keras를 활용하여 모델을 구축할 수 있는 가장 간단한 형태의 API
 ```python
+# fully-connected layer
 from tensorflow.keras import layers
 
 model = tf.keras.Sequential()
@@ -129,6 +130,7 @@ model.add(layers.Dense(10, activation = 'softmax'))
     - 공유 층을 활용하는 모델 (Models with shared layers)
     - 데이터 흐름이 순차적이지 않은 모델 (Models with non-sequential data flows)
 
+Functional API 모델 선언
 ```python
 inputs = tf.keras.input(shape=(32,))
 x = layers.Dense(64, activation = 'rulu')(inputs)
@@ -139,6 +141,7 @@ predictions = layers.Dense(10, activation = 'sofrmax')(x)
 ## Custom Layer (33p)
 새로운 연산을 하는 레이어 혹은 편의를 위해 여러 레이어를 하나로 묶은 레이어를 구현해야 하는 경우 사용자 정의 층(Custom Layer)을 만들어 사용
 ```python
+# Sequential모듈과 활용
 from tensorflow.keras import layers
 
 model = tf.keras.Sequential()
@@ -163,21 +166,22 @@ class MyModel(tf.keras.Model):
         return self.dense_layer3(x)
 ```
 
-## 2. 모델 학습
+## 모델 학습
 Tensor Flow 2.0 공식 가이드에서 권장하는 모델학습
 
 - 1. 케라스 모델의 내장 API를 활용한 방법(ex. model.fit(), model.evaluate(), model.predict())
 - 2. 학습, 검증, 예측 등 모든 과정을 GradientTape 객체를 활용해 직접 구현하는 방법
 
-## 내장 API 활용 (36p)
-- 학습과정 정의
+## 내장 API를 활용한 모델 학습 (36p)
+- 1. 학습과정 정의
     - 손실함수(loss function), 옵티마이저(optimizer), 지표(metric)
 ```python
 model.complie(optimizer = tf.keras.optimizer.Adam(),
             loss = tf.keras.losses.CategoricalCrossentropy(),
             metrics = [tf.keras.metrics.Accuracy()])
 ```
-- 정의된 모델 객체를 대상으로 학습, 푱가, 예측 메서드 호출
+- 2. 학습 과정을 바탕으로 학습 시작
+    - 정의된 모델 객체를 대상으로 학습, 평가, 예측 메서드 호출
 ```python
 model.fit(x_train, y_train, betch_size = 64, epochs = 3)
 ```
