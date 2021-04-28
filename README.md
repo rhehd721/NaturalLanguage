@@ -185,3 +185,11 @@ model.complie(optimizer = tf.keras.optimizer.Adam(),
 ```python
 model.fit(x_train, y_train, betch_size = 64, epochs = 3)
 ```
+- 3. 검증도 확인
+```python
+# validation_data=(x_val, y_val)
+model.fit(x_train, y_train, betch_size = 64, epochs = 3, validation_data=(x_val, y_val))
+```
+
+# 사이킷런
+Python 머신러닝 라이브러리
